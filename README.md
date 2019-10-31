@@ -69,3 +69,41 @@ api:
       - INDEX
       - GET
 ```
+
+Will result in something like
+
+```
+├── package.json
+├── README.md
+├── schema
+│   ├── diagram.er
+│   ├── README.md
+│   └── diagram.png
+├── src
+│   ├── Article
+│   │   ├── Article.entity.ts
+│   │   ├── Article.service.ts
+│   │   ├── Article.controller.ts
+│   │   └── Article.module.ts
+│   ├── App
+│   │   ├── App.controller.ts
+│   │   └── App.module.ts
+│   ├── Tag
+│   │   ├── Tag.entity.ts
+│   │   ├── Tag.service.ts
+│   │   ├── Tag.controller.ts
+│   │   └── Tag.module.ts
+│   ├── User
+│   │   ├── User.entity.ts
+│   │   ├── User.service.ts
+│   │   ├── User.controller.ts
+│   │   └── User.module.ts
+│   └── main.ts
+├── dockerfile
+├── docker-compose.yml
+├── .birdhouse.yml
+├── .captain.yml
+|── .drone.yml
+└── .gitignore
+
+```

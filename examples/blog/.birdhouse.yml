@@ -5,9 +5,9 @@ api:
         id: string
 
       schema:
-        - name: string
-        - email: string
-        - age: number
+        name: string
+        email: string
+        age: number
 
       has-many:
         - article
@@ -17,10 +17,10 @@ api:
         id: string
 
       schema:
-        - title: string
-        - body: string
-        - created: date
-        - updated: date
+        title: string
+        body: string
+        created: date
+        updated: date
 
       has-one:
         - user

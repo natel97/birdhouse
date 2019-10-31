@@ -2,7 +2,6 @@ const chalk = require("chalk");
 
 const FILE_NOT_FOUND = () => {
   return console.log(`
-    
 ${chalk.red("Warning")}: File not found. Please ensure the following path exists
 
 ${chalk.red(process.cwd() + "/.birdhouse.yml")}
@@ -22,8 +21,11 @@ _||__________________________||__
 `);
 };
 
-const FAILED = () => {
+const FAILED = message => {
   console.log(`
+${chalk.red(message)}
+
+
 ${chalk.red("Process Failed. Please read above for error details.")}
 ${chalk.green("Thank you for using Birdhouse!")}
 `);

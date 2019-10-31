@@ -9,7 +9,7 @@ if (commandList[args[0]]) {
   try {
     return commandList[args[0]]();
   } catch (e) {
-    return FAILED();
+    return FAILED(e);
   }
 }
 
