@@ -1,0 +1,63 @@
+api:
+  name: SuperStore
+  domain: superstoreshopping
+  team: ilc
+  entities:
+    user:
+      primary-key:
+        id: string
+      schema:
+        name: string
+        email: string
+        password: string
+        admin: boolean
+        lastLogin: Date
+        created: Date
+      one-to-many:
+        - invoice
+
+    invoice:
+      primary-key:
+        id: string
+      schema:
+        submitted: Date
+        shipped: Date
+        paymentSuccessful: boolean
+      many-to-one:
+        - user
+      one-to-many:
+        - invoiceItem
+
+    item:
+      primary-key:
+        id: string
+      one-to-many:
+        - invoiceItem
+
+    invoiceItem:
+      primary-key:
+        id: string
+      schema:
+        quantity: number
+      many-to-one:
+        - invoice
+        - item
+
+  routes:
+    user:
+      - INDEX
+      - GET
+      - POST
+      - PUT
+      - DELETE
+
+    item:
+      - INDEX
+      - GET
+      - POST
+      - PUT
+      - DELETE
+
+    invoice:
+      - GET
+      - POST

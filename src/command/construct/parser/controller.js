@@ -15,6 +15,7 @@ const methodMap = {
   return this.${name}Service.getAll${upper(name)}();
 }`,
   PUT: name => `      
+  @ApiImplicitParam({ name: 'id' })
   @Put(':id')
   async update${upper(name)}(
     @Param() id,
@@ -24,6 +25,7 @@ const methodMap = {
   }
 `,
   DELETE: name => `
+  @ApiImplicitParam({ name: 'id' })
   @Delete(':id')
   async remove${upper(name)}(
     @Param() id,
