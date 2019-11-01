@@ -6,6 +6,9 @@ const nesting = async () => {
   // await exec("npm i -g @nestjs/cli");
   // await exec("nest new .");
   console.log("Installing Dependencies");
+  await exec(
+    `erd -i ${process.cwd()}/docs/db.er -o ${process.cwd()}/docs/db.png`
+  );
   await exec("yarn");
   console.log("Good to go! Run docker-compose up --build to start 'er up!");
   // await exec("docker-compose up --build");

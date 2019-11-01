@@ -7,6 +7,7 @@ const parseControllerData = require("./construct/parser/controller");
 const generateModule = require("./construct/parser/module");
 const createSetup = require("./construct/utils/setup");
 const nesting = require("../utils/nesting");
+const createErFile = require("./construct/utils/er.js");
 
 const readFile = () => {
   const location = process.cwd() + "/.birdhouse.yml";
@@ -27,6 +28,7 @@ const convertToYaml = async file => {
     console.log(error);
     throw error;
   }
+
   return json;
 };
 
@@ -110,6 +112,7 @@ const createApplication = (entities, services, controllers, api) => {
 const construct = async () => {
   const file = readFile();
   const json = await convertToYaml(file);
+  createErFile(json);
   const entities = generateEntities(json);
   const services = generateServices(json);
   const controllers = generateControllers(json);
