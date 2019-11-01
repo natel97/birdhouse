@@ -4,10 +4,9 @@ const messages = require("../utils/messages");
 const parseEntityData = require("./construct/parser/entity");
 const parseServiceData = require("./construct/parser/service");
 const parseControllerData = require("./construct/parser/controller");
-const captain = require("./construct/utils/captain");
-const docker = require("./construct/utils/docker");
-const drone = require("./construct/utils/drone");
-const dockerCompose = require("./construct/utils/dockerCompose");
+const generateModule = require("./construct/parser/module");
+const createSetup = require("./construct/utils/setup");
+const nesting = require("../utils/nesting");
 
 const readFile = () => {
   const location = process.cwd() + "/.birdhouse.yml";
@@ -28,7 +27,6 @@ const convertToYaml = async file => {
     console.log(error);
     throw error;
   }
-  console.log(JSON.stringify(json, null, 2));
   return json;
 };
 
@@ -69,17 +67,7 @@ const generateControllers = json => {
   return hash;
 };
 
-const createSetup = ({ team, domain, name }) => {
-  name = name.replace("-", "").toLowerCase();
-  fs.writeFileSync(".captain.yml", captain(name, domain, team));
-  fs.writeFileSync("dockerfile", docker(false));
-  fs.writeFileSync("local.dockerfile", docker(true));
-  fs.writeFileSync("docker-compose.yml", dockerCompose(name));
-  fs.writeFileSync(".drone.yml", drone(name));
-};
-
 const createApplication = (entities, services, controllers, api) => {
-  console.log(JSON.stringify({ entities, services, controllers }, null, 2));
   fs.mkdirSync(`${process.cwd()}/src`);
 
   createSetup(api);
@@ -91,6 +79,10 @@ const createApplication = (entities, services, controllers, api) => {
     fs.writeFileSync(
       `${process.cwd()}/src/${name}/${name}.entity.ts`,
       entities[name]
+    );
+    fs.writeFileSync(
+      `${process.cwd()}/src/${name}/${name}.module.ts`,
+      generateModule(name)
     );
   });
   Object.keys(services).forEach(name => {
@@ -121,7 +113,8 @@ const construct = async () => {
   const entities = generateEntities(json);
   const services = generateServices(json);
   const controllers = generateControllers(json);
-  return createApplication(entities, services, controllers, json.api);
+  createApplication(entities, services, controllers, json.api);
+  return nesting();
 };
 
 module.exports = construct;

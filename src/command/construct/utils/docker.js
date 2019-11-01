@@ -8,8 +8,8 @@ ADD package.json yarn.lock tsconfig.json ${
 ADD src /app/src`
     : ""
 }
-RUN yarn
 WORKDIR /app
+RUN yarn
 EXPOSE 4000
 ENTRYPOINT yarn start${local ? ":dev" : ""}
 

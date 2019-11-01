@@ -20,7 +20,7 @@ const methodMap = {
     @Param() id,
     @Body() ${name}: ${upper(name)}Entity,
   ): Promise<any> {
-      return this.${name}Service.update(id, body);
+      return this.${name}Service.update${upper(name)}(id, ${name});
   }
 `,
   DELETE: name => `
@@ -42,7 +42,7 @@ const methodMap = {
 `
 };
 
-const parseController = (name, entity, methods) => {
+const parseController = (name, entity, methods = []) => {
   return `
   import {
         Controller,
@@ -53,12 +53,12 @@ const parseController = (name, entity, methods) => {
         Delete,
         Put,
       } from '@nestjs/common';
-      import { ${upper(name)}Service } from '../service/${upper(name)}.service';
-      import { ${upper(name)}Entity } from '../entity/${upper(name)}.entity';
+      import  ${upper(name)}Service from './${name}.service';
+      import  ${upper(name)}Entity from './${name}.entity';
       import { ApiImplicitParam } from '@nestjs/swagger';
       
       @Controller('${name}')
-      export class ${upper(name)}Controller {
+      export default class ${upper(name)}Controller {
         constructor(private readonly ${name}Service: ${upper(name)}Service) {}
 
         ${methods.map(m => methodMap[m](name)).join("")}
