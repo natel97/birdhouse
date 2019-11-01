@@ -1,4 +1,7 @@
 api:
+  name: SuperBlog
+  domain: superblogging
+  team: ilc
   entities:
     user:
       primary-key:
@@ -9,7 +12,7 @@ api:
         email: string
         age: number
 
-      has-many:
+      one-to-many:
         - article
 
     article:
@@ -22,10 +25,10 @@ api:
         created: date
         updated: date
 
-      has-one:
+      many-to-one:
         - user
 
-      has-many:
+      one-to-many:
         - tag
 
     tag:
@@ -42,13 +45,13 @@ api:
       - PUT
       - DELETE
 
-    person:
+    user:
       - INDEX
       - GET
       - POST
       - PUT
       - DELETE
 
-    TAG:
+    tag:
       - INDEX
       - GET

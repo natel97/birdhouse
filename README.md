@@ -15,17 +15,20 @@ construct, init
 
 ```yaml
 api:
+  name: SuperBlog
+  domain: superblogging
+  team: ilc
   entities:
     user:
       primary-key:
         id: string
 
       schema:
-        - name: string
-        - email: string
-        - age: number
+        name: string
+        email: string
+        age: number
 
-      has-many:
+      one-to-many:
         - article
 
     article:
@@ -33,15 +36,15 @@ api:
         id: string
 
       schema:
-        - title: string
-        - body: string
-        - created: date
-        - updated: date
+        title: string
+        body: string
+        created: date
+        updated: date
 
-      has-one:
+      many-to-one:
         - user
 
-      has-many:
+      one-to-many:
         - tag
 
     tag:
@@ -58,14 +61,14 @@ api:
       - PUT
       - DELETE
 
-    person:
+    user:
       - INDEX
       - GET
       - POST
       - PUT
       - DELETE
 
-    TAG:
+    tag:
       - INDEX
       - GET
 ```
