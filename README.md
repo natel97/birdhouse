@@ -2,21 +2,34 @@
 
 ## About
 
-Birdhouse is an API scaffolding tool for NestJS
+Birdhouse is an API scaffolding / generation tool for NestJS
 
 Go from YAML to YAPI in minutes :D
 
-## Warnings
+## Features
 
-For Docs Generation, this requires Haskell and the `erd` package installed.
-If you don't install it, you'll be fine with running the command `docker-compose up --build` after it fails.
+By default, this initializes a NestJS application with a Postgres database, Swagger Docs, an ER diagram, a dockerfile, a docker-compose file, and creates the entities and routes that you declare in the YML file.
+
+This originated as a hackathon project, so the code may be flaky on some edge cases.
+
 
 ## Usage
+
+Install module globally `npm i -g birdhouse`
 
 Usage: birdhouse `<command>`
 
 where `<command>` is one of:
 construct, init
+
+
+### construct
+
+Construct creates an application using the .birdhouse.yml file in the current folder. No arguments for construct exist as of now.
+
+### init
+
+Does nothing now, would be nice to use this to initialize a yml in the command line.
 
 ## Example Syntax
 
@@ -124,11 +137,11 @@ Will result in something like
 │   |── app.module.ts
 │   └── main.ts
 ├── dockerfile
-├── docker-compose.yml
-├── .birdhouse.yml
-└── .gitignore
+└── docker-compose.yml
 
 ```
+
+**Does not generate .gitignore**
 
 ## Development
 
@@ -136,4 +149,5 @@ use `npm link`
 
 ## Future
 
-Would love to use AST rather than injecting files
+Would love to use AST rather than injecting files. But hey, hackathon, right?
+Also, cleanup is probably needed and it'd be nice to include options for GraphQL, other databases, and include a React frontend with basic crud to match routes.

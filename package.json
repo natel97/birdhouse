@@ -1,18 +1,19 @@
 {
-  "name": "jscaffold",
-  "version": "1.0.0",
-  "description": "Scaffold nestjs",
+  "name": "birdhouse",
+  "version": "0.1.0",
+  "description": "Generate NestJS code from YML",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Nate Lubitz",
+  "author": "Nathanial Lubitz",
   "license": "ISC",
   "bin": {
     "birdhouse": "./index.js"
   },
   "dependencies": {
     "chalk": "^2.4.2",
+    "erd": "^0.0.8",
     "js-yaml": "^3.13.1"
   }
 }
