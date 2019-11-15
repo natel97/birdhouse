@@ -133,3 +133,7 @@ Will result in something like
 ## Development
 
 use `npm link`
+
+## Future
+
+Would love to use AST rather than injecting files
