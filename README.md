@@ -6,6 +6,11 @@ Birdhouse is an API scaffolding tool for NestJS
 
 Go from YAML to YAPI in minutes :D
 
+## Warnings
+
+For Docs Generation, this requires Haskell and the `erd` package installed.
+If you don't install it, you'll be fine with running the command `docker-compose up --build` after it fails.
+
 ## Usage
 
 Usage: birdhouse `<command>`
@@ -19,7 +24,6 @@ construct, init
 api:
   name: SuperBlog
   domain: superblogging
-  team: ilc
   entities:
     user:
       primary-key:
@@ -91,10 +95,10 @@ Will result in something like
 ```
 ├── package.json
 ├── README.md
-├── schema
-│   ├── diagram.er
+├── docs
+│   ├── db.er
 │   ├── README.md
-│   └── diagram.png
+│   └── db.png
 ├── src
 │   ├── article
 │   │   ├── article.entity.ts
@@ -122,8 +126,10 @@ Will result in something like
 ├── dockerfile
 ├── docker-compose.yml
 ├── .birdhouse.yml
-├── .captain.yml
-|── .drone.yml
 └── .gitignore
 
 ```
+
+## Development
+
+use `npm link`

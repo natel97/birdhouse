@@ -31,6 +31,10 @@ api:
     item:
       primary-key:
         id: string
+      schema:
+        name: string
+        cost: number
+        barcode: string
       one-to-many:
         - invoiceItem
 
